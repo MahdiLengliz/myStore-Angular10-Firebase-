@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {Router} from '@angular/router';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,8 +9,16 @@ import {Router} from '@angular/router';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-
-  constructor(private auth: AngularFireAuth, private route: Router) { }
+isuser;
+  constructor(private auth: AngularFireAuth, private route: Router, fa: AuthService) {
+    fa.userrr.subscribe(user => {
+      if (user) {
+        this.isuser = true;
+      } else {
+        this.isuser = false;
+      }
+    });
+  }
 
   ngOnInit() {
   }
