@@ -1,0 +1,51 @@
+
+<div class="container-fluid">
+  <div class="row no-gutter">
+    <!-- The image half -->
+    <div class="col-md-6 d-none d-md-flex bg-image"></div>
+
+
+    <!-- The content half -->
+    <div class="col-md-6 bg-light">
+      <div class="login d-flex align-items-center py-5">
+
+        <!-- Demo content-->
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-10 col-xl-7 mx-auto">
+              <h3 class="display-4">Sign In</h3>
+              <form #rg="ngForm" (ngSubmit)="signin(rg)" >
+
+
+                <div class="form-group mb-3">
+                  <div class="form-group mb-3">
+                    <div class="uk-inline">
+                      <span class="uk-form-icon" uk-icon="icon: mail   "></span>
+                      <input  #email="ngModel" ngModel email required name="email" type="email" placeholder=""  autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                    </div>
+                    <p class="uk-alert-danger" *ngIf="(email.errors?.email && email.touched)"> email is not valid !</p>
+                    <p class="uk-alert-danger" *ngIf="(email.errors?.required && email.touched)"> email is required !</p>
+                  </div>
+                </div>
+                <div class="uk-margin">
+                  <div class="uk-inline">
+                    <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                    <input  #pwd="ngModel" ngModel  required minlength="8" name="pwd" type="password" placeholder="   Password"  class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                  </div>
+                  <p class="uk-alert-danger" *ngIf="pwd.errors?.required && pwd.touched"> password is required !</p>
+                  <p class="uk-alert-danger" *ngIf="pwd.errors?.minlength && pwd.touched"> password is less 8 caracter !</p>
+                </div>
+                <p class="uk-alert-danger" *ngIf="messageError!==''">{{messageError}}</p>
+
+                <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Signup</button>
+              </form>
+            </div>
+          </div>
+        </div><!-- End -->
+
+      </div>
+    </div><!-- End -->
+
+  </div>
+</div>
+
