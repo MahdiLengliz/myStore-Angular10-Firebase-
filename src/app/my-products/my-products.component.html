@@ -1,77 +1,67 @@
 <br>
 <br>
 <h4 style="text-align: center"> My Products</h4>
+
 <div class="container">
   <div class="body">
-    <div class="row">
-      <div class="col col-12 col-md-6 col-lg-3">
-        <div class="card" style="width: 18rem;">
-          <img src="assets/images/asus-rog-phone-3-frandroid-2020.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+    <button class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#exampleModal">Add Products</button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form #addProduct="ngForm" (ngSubmit)="addP(addProduct)"  name="addProduct">
+              <div>
+
+                  <input type="text" class="form-control" placeholder="Title" name="title" #title="ngModel" ngModel required>
+                </div>
+                <br>
+                <div >
+                  <textarea class="form-control" cols="4" rows="5" placeholder="Description" name="description" #description="ngModel" ngModel required></textarea>
+                </div>
+                <br>
+                <div>
+                  <input name="image" type="text" class="form-control" placeholder="Image" #image="ngModel" ngModel required>
+                </div>
+
+              <div class=" alert-success" *ngIf="succesMessage!=''">{{succesMessage}}</div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn-success">Add Product</button>
+              </div>
+
+            </form>
+          </div>
+
           </div>
         </div>
       </div>
+    </div>
+    <br>
+    <br>
+    <br>
 
-      <div class="col col-12 col-md-6 col-lg-3">
-        <div class="card" style="width: 18rem;">
-          <img src="assets/images/asus.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="container-fluid">
+      <div class="row" >
+        <div class="col col-12 col-md-6 col-lg-4 " *ngFor="let item of dataArray">
+          <div class="card" style="width: 18rem;" *ngIf="Uid===item.uid">
+            <img [src]="item.image" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{item.title}}</h5>
+              <p class="card-text">{{item.description}}</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
           </div>
         </div>
-      </div>
-
-      <div class="col col-12 col-md-6 col-lg-3">
-        <div class="card" style="width: 18rem;">
-          <img src="assets/images/appel.jfif" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col col-12 col-md-6 col-lg-3">
-        <div class="card" style="width: 18rem;">
-          <img src="assets/images/asus2.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col col-12 col-md-6 col-lg-3">
-        <div class="card" style="width: 18rem;">
-          <img src="assets/images/oppo.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col col-12 col-md-6 col-lg-3">
-        <div class="card" style="width: 18rem;">
-          <img src="assets/images/appel2.jfif" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
+          <br>
         </div>
       </div>
 
     </div>
   </div>
 
-
-</div>

@@ -1,21 +1,83 @@
 <br>
 <br>
-<div class="container">
-  <article class="uk-comment">
-    <header class="uk-comment-header">
+<div class="container" >
+  <article  class="uk-comment" >
+    <header class="uk-comment-header" >
       <div class="uk-grid-medium uk-flex-middle" uk-grid>
         <div class="uk-width-auto">
-          <img class="uk-comment-avatar" src="https://getuikit.com/docs/images/avatar.jpg" width="200" height="200" alt="">
+          <img class="uk-comment-avatar" [src]="profilArray.image" width="200" height="200" alt="">
         </div>
         <div class="uk-width-expand">
-          <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a></h4>
-
+          <h4 class="uk-comment-title uk-margin-remove"> {{profilArray.username}}</h4>
         </div>
+
+        <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Update</button>
+          <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal2">Update Image</button>
+
+          <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                    <label class="uk-label"> username: </label>
+                  <input type="text" name="username" class="form-control" [(ngModel)]="profilArray.username">
+<button class="btn btn-success" (click)="update()">Update</button>
+                    <div *ngIf="succesUpdate!=''">
+                        <p class="alert-success">{{succesUpdate}}</p>
+                    </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel2">Upload Image</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          <form>
+                              <label class="uk-label">chose image for upload: </label>
+                              <input type="file" accept=".jpg,.png" (change)="uploadImage($event)">
+                              <div *ngIf="pourcentage |async as pct">
+                                <div *ngIf="pct==100" class="alert alert-success">
+                                Upload Succefully !
+                                </div>
+                                  <progress
+                                          id="js-proressbar"
+                                          class="uk-progress"
+                                          [value]="pct"
+                                          max="100">
+
+                                  </progress>
+                              </div>
+                          </form>
+                      </div>
+                      <div class="modal-footer">
+
+                      </div>
+                  </div>
+              </div>
+          </div>
       </div>
     </header>
-    <div class="uk-comment-body">
-      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    </div>
+
   </article>
 
 </div>

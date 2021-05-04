@@ -18,12 +18,14 @@ export class RegisterComponent implements OnInit {
     let data = f.value;
     console.log(data);
     this.auth.signUp(data.email, data.pwd).then((user) => {
+      localStorage.setItem('idUserStorage',user.user.uid)
+
       console.log('register done');
       this.fs.collection('users').doc(user.user.uid).set({
         username: data.username,
         email: data.email,
-        uid: user.user.uid
-      });
+        uid: user.user.uid,
+        image:'https://thumbs.dreamstime.com/b/profile-anonymous-face-icon-gray-silhouette-person-male-businessman-profile-default-avatar-photo-placeholder-isolated-white-117831744.jpg'      });
       this.route.navigate(['/']);
     }).catch(() => {
       console.log('error register');

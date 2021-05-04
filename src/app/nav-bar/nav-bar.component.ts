@@ -25,6 +25,7 @@ isuser;
   logout() {
     this.auth.signOut().then(() => {
       console.log('logout done');
+      localStorage.removeItem('idUserStorage')
       this.route.navigate(['/login']);
     }).catch(() => {
       console.log('error logout');

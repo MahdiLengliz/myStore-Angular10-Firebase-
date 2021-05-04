@@ -15,7 +15,8 @@ messageError;
   }
 signin(f) {
     let data = f.value;
-    this.auth.signIn(data.email, data.pwd).then(() => {
+    this.auth.signIn(data.email, data.pwd).then((data) => {
+        localStorage.setItem('idUserStorage',data.user.uid)
       console.log('signUp done');
       this.route.navigate(['/']);
     }).catch(() => {
