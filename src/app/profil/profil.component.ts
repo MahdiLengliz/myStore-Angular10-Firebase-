@@ -41,7 +41,6 @@ constructor(private fs:AngularFirestore,as:AuthService, private fst: AngularFire
       username:this.profilArray.username
     }).then(()=>{
       this.succesUpdate="Update succes"
-      window.location.reload()
     }).catch(()=>{
       this.succesUpdate="Error Update"
 

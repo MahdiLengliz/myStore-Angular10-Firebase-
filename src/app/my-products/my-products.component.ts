@@ -12,13 +12,18 @@ export class MyProductsComponent implements OnInit {
 Uid;
 succesMessage;
 dataArray=[];
+
+dataforUpdate={
+    id:'',
+    title:'',
+    description:''
+}
+    msgUpdate
   constructor(private fs:AngularFirestore, private as:AuthService) {
     this.as.userrr.subscribe((user)=>{
-
             this.Uid=user.uid;
-
-
     })
+
   }
 
   ngOnInit() {
@@ -32,8 +37,11 @@ dataArray=[];
                   uid:element.payload.doc.data()['uid']
               }
           })
+
+
       })
-  }
+
+}
 addP(addProduct){
     let data = addProduct.value;
     this.fs.collection("products").add({
@@ -52,4 +60,26 @@ addP(addProduct){
     })
 
 }
+getdataforupdate(id,title,description){
+    this.dataforUpdate.id=id
+    this.dataforUpdate.title=title
+    this.dataforUpdate.description=description
+
 }
+    updateProduct(f){
+    let data=f.value
+    this.fs.collection("products").doc(this.dataforUpdate.id).update({
+        title:data.title,
+        description:data.description
+    }).then(()=>{
+        this.msgUpdate="title updated !!"
+    }).catch(()=>{
+        console.log('error of update')
+    })
+    }
+    deleteP(id){
+      this.fs.collection('products').doc(id).delete().then(()=>{
+window.location.reload();
+    });
+}}
+
