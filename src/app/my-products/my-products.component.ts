@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AuthService} from '../services/auth.service';
-import {Title} from '@angular/platform-browser';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-my-products',
   templateUrl: './my-products.component.html',
   styleUrls: ['./my-products.component.css']
 })
-export class MyProductsComponent implements OnInit {
+export class MyProductsComponent implements OnInit,OnDestroy {
+
 Uid;
 succesMessage;
 dataArray=[];
-
+getProducts:Subscription;
 dataforUpdate={
     id:'',
     title:'',
@@ -27,7 +28,7 @@ dataforUpdate={
   }
 
   ngOnInit() {
-      this.fs.collection('products').snapshotChanges().subscribe((data)=>{
+      this.getProducts = this.fs.collection('products').snapshotChanges().subscribe((data)=>{
          this.dataArray= data.map(element=>{
               return {
                   id:element.payload.doc.id,
@@ -81,5 +82,10 @@ getdataforupdate(id,title,description){
       this.fs.collection('products').doc(id).delete().then(()=>{
 window.location.reload();
     });
-}}
+}
+    ngOnDestroy() {
+        this.getProducts.unsubscribe()
+        console.log('on destroy done')
+    }
+}
 

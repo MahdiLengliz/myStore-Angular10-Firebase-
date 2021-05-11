@@ -16,6 +16,8 @@ import { HomeComponent } from './home/home.component';
 import { ProfilComponent } from './profil/profil.component';
 import { ProductsComponent } from './products/products.component';
 import { MyProductsComponent } from './my-products/my-products.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ErrorNotFoundComponent } from './error-not-found/error-not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,9 @@ import { MyProductsComponent } from './my-products/my-products.component';
     HomeComponent,
     ProfilComponent,
     ProductsComponent,
-    MyProductsComponent
+    MyProductsComponent,
+    ProductDetailsComponent,
+    ErrorNotFoundComponent
   ],
   imports: [
     BrowserModule,

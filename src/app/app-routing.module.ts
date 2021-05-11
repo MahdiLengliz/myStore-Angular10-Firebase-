@@ -7,14 +7,21 @@ import {HomeComponent} from './home/home.component';
 import {ProfilComponent} from './profil/profil.component';
 import {ProductsComponent} from './products/products.component';
 import {MyProductsComponent} from './my-products/my-products.component';
+import {AuthGuardService} from './services/guard/authGuard.service';
+import {NoAuthGardService} from './services/guard/no-auth-gard.service';
+import {ProductDetailsComponent} from './product-details/product-details.component';
+import {ErrorNotFoundComponent} from './error-not-found/error-not-found.component';
 
 const routes: Routes = [
-  {path: 'register', component: RegisterComponent},
-  {path: 'login' , component: LoginComponent},
   {path: '' , component: HomeComponent},
-  {path: 'profil' , component: ProfilComponent},
-  {path: 'products' , component: ProductsComponent},
-  {path: 'myProducts' , component: MyProductsComponent}
+  {path: 'register', component: RegisterComponent,canActivate:[NoAuthGardService]},
+  {path: 'login' , component: LoginComponent,canActivate:[NoAuthGardService]},
+  {path: 'profil' , component: ProfilComponent,canActivate:[AuthGuardService]},
+  {path: 'products' , component: ProductsComponent,canActivate:[AuthGuardService]},
+  {path: 'myProducts' , component: MyProductsComponent,canActivate:[AuthGuardService]},
+  {path:'productDetail/:id',component:ProductDetailsComponent,canActivate:[AuthGuardService]},
+  {path:'404',component:ErrorNotFoundComponent},
+  {path:'**',redirectTo:'404'}
 ];
 
 @NgModule({
